@@ -39,12 +39,9 @@ import Camnangdulich from "../Camnangdulich/Camnangdulich";
 import Themcamnang from "../Camnangdulich/Themcamnang";
 import Khuyenmai from "../Khuyenmai/Khuyenmai";
 import Themkhuyenmai from "../Khuyenmai/Themkhuyenmai";
-import { useDispatch, useSelector } from "react-redux";
+import {useSelector } from "react-redux";
 import Chiphi from "../Chiphi/Chiphi";
 import Themchiphi from "../Chiphi/Themchiphi";
-import Hoadoncanhan from "../Hoadoncanhan/Hoadoncanhan";
-import Kiemduyet from "../Kiemduyet/Kiemduyet";
-import { hoadoncanhanData } from "../Hoadoncanhan/hoadoncanhanSlice";
 
 export default function Nav() {
   const match = useRouteMatch();
@@ -53,25 +50,25 @@ export default function Nav() {
     collapsed: true,
     visible: true,
   });
-  const dispatch = useDispatch();
-  const actionResult = async () => {
-    await dispatch(hoadoncanhanData());
-  };
-  useEffect(() => {
-    actionResult();
-    window.scrollTo(0, 0);
-  }, []);
-  const hoadoncanhan = useSelector(
-    (state) => state.hoadoncanhans.hoadoncanhan.data
-  );
-  let counthoadon = 0;
-  if (hoadoncanhan) {
-    for (let i = 0; i < hoadoncanhan.length; i++) {
-      if (hoadoncanhan[i].kiemduyet === 0) {
-        counthoadon++;
-      }
-    }
-  }
+  //const dispatch = useDispatch();
+  // const actionResult = async () => {
+  //   await dispatch(hoadoncanhanData());
+  // };
+  // useEffect(() => {
+  //   actionResult();
+  //   window.scrollTo(0, 0);
+  // }, []);
+  // const hoadoncanhan = useSelector(
+  //   (state) => state.hoadoncanhans.hoadoncanhan.data
+  // );
+  // let counthoadon = 0;
+  // if (hoadoncanhan) {
+  //   for (let i = 0; i < hoadoncanhan.length; i++) {
+  //     if (hoadoncanhan[i].kiemduyet === 0) {
+  //       counthoadon++;
+  //     }
+  //   }
+  // }
   const toggle = () => {
     setState({
       collapsed: !state.collapsed,
@@ -170,9 +167,9 @@ export default function Nav() {
       <Route exact path={`${match.path}/chiphi/themchiphi`}>
         <Themchiphi url={match.url} />
       </Route>
-      <Route exact path={`${match.path}/kiemduyet`}>
+      {/* <Route exact path={`${match.path}/kiemduyet`}>
         <Kiemduyet url={match.url} />
-      </Route>
+      </Route> */}
       <Route exact path={`${match.path}/khuyenmai`}>
         <Khuyenmai url={match.url} />
       </Route>
@@ -218,9 +215,9 @@ export default function Nav() {
       <Route exact path={`${match.path}/hoadon`}>
         <Hoadon url={match.url} />
       </Route>
-      <Route exact path={`${match.path}/hoadoncanhan`}>
+      {/* <Route exact path={`${match.path}/hoadoncanhan`}>
         <Hoadoncanhan url={match.url} />
-      </Route>
+      </Route> */}
       <Route exact path={`${match.path}/anh`}>
         <Anh url={match.url} />
       </Route>
@@ -463,7 +460,7 @@ export default function Nav() {
       >
         <Link to={`${match.url}/chiphi`}>Chi phí</Link>
       </Menu.Item>
-      <Menu.Item
+      {/* <Menu.Item
         key="21"
         icon={
           state.collapsed === true ? (
@@ -473,10 +470,10 @@ export default function Nav() {
           )
         }
       >
-        <Link to={`${match.url}/kiemduyet`}>
+        { <Link to={`${match.url}/kiemduyet`}>
           Kiểm duyệt tour {counthoadon === 0 ? "" : <Badge status="error" />}
-        </Link>
-      </Menu.Item>
+        </Link> }
+      </Menu.Item> */}
       <Menu.Item
         key="2"
         icon={
@@ -621,7 +618,7 @@ export default function Nav() {
       >
         <Link to={`${match.url}/hoadon`}>Quản lý hoá đơn</Link>
       </Menu.Item>
-      <Menu.Item
+      {/* <Menu.Item
         key="20"
         icon={
           state.collapsed === true ? (
@@ -632,7 +629,7 @@ export default function Nav() {
         }
       >
         <Link to={`${match.url}/hoadoncanhan`}>Hoá đơn tạo tour</Link>
-      </Menu.Item>
+      </Menu.Item> */}
       <Menu.Item
         key="14"
         icon={
@@ -721,15 +718,6 @@ export default function Nav() {
     switch (role) {
       case "admin":
         return admin;
-        break;
-      case "quản lý tin tức":
-        return quanlytintuc;
-        break;
-      case "biên tập viên":
-        return quanlytintuc;
-        break;
-      case "quản lý bình luận":
-        return quanlybinhluan;
         break;
       case "quản lý tour":
         return quanlytour;

@@ -56,7 +56,7 @@ require("./routes/TourKhuyenmai")(app);
 require("./routes/VnPayment")(app);
 require("./routes/Chiphi")(app);
 require("./routes/Hoadoncanhan")(app);
-require("./routes/Thongbao")(app);
+//require("./routes/Thongbao")(app);
 require("./routes/SendEmail")(app);
 
 app.use(function (err, req, res, next) {

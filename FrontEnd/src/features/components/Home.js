@@ -40,8 +40,6 @@ import { tourData } from "../container/admin/Tour/tourSlice";
 import { camnangdulichData } from "../container/admin/Camnangdulich/camnangdulichSlice";
 import { inforData } from "../container/login/inforSlice";
 import { chiphiData } from "../container/admin/Chiphi/chiphiSlice";
-import CreateTour from "../container/createTour/CreateTour";
-import { thongbaoData } from "../container/admin/Kiemduyet/thongbaoSlice";
 import Thongtin from "../container/trangchu/thongtin/Thongtin";
 import Hotel from "../container/hotels/Hotel";
 import DetailHotel from "../container/hotels/DetailHotel";
@@ -78,7 +76,7 @@ export default function NestingExample() {
   const actioncamnang = async () => { await dispatch(camnangdulichData()) }
   const actioninfor = async () => { await dispatch(inforData()) }
   const actionchiphi = async () => { await dispatch(chiphiData()) }
-  const actionthongbao = async () => { await dispatch(thongbaoData()) }
+  //const actionthongbao = async () => { await dispatch(thongbaoData()) }
   useEffect(() => {
 
     // const unregisterAuthObserver = firebase.auth().onAuthStateChanged(async (user) => {
@@ -109,7 +107,7 @@ export default function NestingExample() {
     actioncamnang();
     actioninfor();
     actionchiphi();
-    actionthongbao();
+//    actionthongbao();
     // }
     // );
     // return () => unregisterAuthObserver();
@@ -162,9 +160,6 @@ export default function NestingExample() {
           </Route>
           <Route path='/dat-tour'>
             <Dattour />
-          </Route>
-          <Route path='/create-tour'>
-            <CreateTour />
           </Route>
           <Route path='/stripe'>
             <Stripe />

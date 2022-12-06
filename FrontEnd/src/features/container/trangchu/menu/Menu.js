@@ -10,10 +10,7 @@ import { Button, IconButton } from "@material-ui/core";
 import { storage } from "../../../../firebase";
 import { inforData } from "../../login/inforSlice";
 import taikhoanApi from "../../../../api/taikhoanApi";
-import {
-  thongbaoData,
-  updatethongbao,
-} from "../../admin/Kiemduyet/thongbaoSlice";
+//import { thongbaoData,updatethongbao,} from "../../admin/Kiemduyet/thongbaoSlice";
 
 function ListMenu(props) {
   const [avatar, setAvatar] = useState("");
@@ -123,9 +120,9 @@ function ListMenu(props) {
       <Menu.Item key="2">
         <span onClick={showDrawer}>Xem thông tin</span>
       </Menu.Item>
-      <Menu.Item key="4">
+      {/* <Menu.Item key="4">
         <Linkrt to="/thongtin/0">Xem lịch sử</Linkrt>
-      </Menu.Item>
+      </Menu.Item> */}
       {users ? (
         phanquyen() ? (
           <Menu.Item key="3">
@@ -147,54 +144,54 @@ function ListMenu(props) {
       )}
     </Menu>
   );
-  const thongbaos = useSelector((state) => state.thongbao.thongbao.data);
-  let thongbao = [];
-  let checkthongbao = 0;
-  if (thongbaos && users) {
-    for (let i = 0; i < thongbaos.length; i++) {
-      if (thongbaos[i].userId === users.id) {
-        thongbao.push(thongbaos[i]);
-      }
-    }
-  }
-  if (thongbao) {
-    for (let i = 0; i < thongbao.length; i++) {
-      if (thongbao[i].status === 1) {
-        checkthongbao++;
-      }
-    }
-  }
+  // const thongbaos = useSelector((state) => state.thongbao.thongbao.data);
+  // let thongbao = [];
+  // let checkthongbao = 0;
+  // if (thongbaos && users) {
+  //   for (let i = 0; i < thongbaos.length; i++) {
+  //     if (thongbaos[i].userId === users.id) {
+  //       thongbao.push(thongbaos[i]);
+  //     }
+  //   }
+  // }
+  // if (thongbao) {
+  //   for (let i = 0; i < thongbao.length; i++) {
+  //     if (thongbao[i].status === 1) {
+  //       checkthongbao++;
+  //     }
+  //   }
+  // }
   const history = useHistory();
-  const actionthongbao = async () => {
-    await dispatch(thongbaoData());
-  };
+  // const actionthongbao = async () => {
+  //   await dispatch(thongbaoData());
+  // };
 
-  const linkthongbao = (id) => {
-    dispatch(updatethongbao({ status: 0, idsua: id }));
-    setTimeout(() => {
-      actionthongbao();
-    }, 500);
-    history.push(`/thongtin/1`);
-  };
-  const sss = (
-    <Menu className="sss">
-      {thongbao.map((ok, index) => (
-        <Menu.Item key={index}>
-          <span
-            onClick={() => {
-              linkthongbao(ok.id);
-            }}
-          >
-            {ok.status === 0 ? (
-              <span>{ok.noidung}</span>
-            ) : (
-              <span className="sss-true">{ok.noidung}</span>
-            )}
-          </span>
-        </Menu.Item>
-      ))}
-    </Menu>
-  );
+  // const linkthongbao = (id) => {
+  //   dispatch(updatethongbao({ status: 0, idsua: id }));
+  //   setTimeout(() => {
+  //     actionthongbao();
+  //   }, 500);
+  //   history.push(`/thongtin/1`);
+  // };
+  // const sss = (
+  //   <Menu className="sss">
+  //     {thongbao.map((ok, index) => (
+  //       <Menu.Item key={index}>
+  //         <span
+  //           onClick={() => {
+  //             linkthongbao(ok.id);
+  //           }}
+  //         >
+  //           {ok.status === 0 ? (
+  //             <span>{ok.noidung}</span>
+  //           ) : (
+  //             <span className="sss-true">{ok.noidung}</span>
+  //           )}
+  //         </span>
+  //       </Menu.Item>
+  //     ))}
+  //   </Menu>
+  // );
   const dispatch = useDispatch();
   const onSubmit = async (e) => {
     e.preventDefault();
@@ -402,17 +399,6 @@ function ListMenu(props) {
               </Dropdown>
             </li>
           </ul>
-          <Dropdown overlay={sss} trigger={["click"]}>
-            {checkthongbao === 0 ? (
-              <Badge>
-                <i class="fas fa-bell"></i>
-              </Badge>
-            ) : (
-              <Badge dot>
-                <i class="fas fa-bell"></i>
-              </Badge>
-            )}
-          </Dropdown>
         </div>
       </nav>
       <Drawer

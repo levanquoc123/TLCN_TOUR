@@ -2,7 +2,7 @@ import { Tabs } from 'antd'
 import React, { useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import Footer from '../footer/Footer'
-import Duyettour from './duyettour/Duyettour'
+//import Duyettour from './duyettour/Duyettour'
 import Lichsu from './lichsu/Lichsu'
 
 export default function Thongtin() {
@@ -27,9 +27,9 @@ export default function Thongtin() {
                         <TabPane tab="Tour đã đặt" key="1">
                             <Lichsu />
                         </TabPane>
-                        <TabPane tab="Duyệt tour" key="2">
+                        {/* <TabPane tab="Duyệt tour" key="2">
                             <Duyettour />
-                        </TabPane>
+                        </TabPane> */}
                     </Tabs>
                 }
             </div>
