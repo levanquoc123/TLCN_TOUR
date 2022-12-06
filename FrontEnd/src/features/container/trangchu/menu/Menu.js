@@ -120,9 +120,9 @@ function ListMenu(props) {
       <Menu.Item key="2">
         <span onClick={showDrawer}>Xem thông tin</span>
       </Menu.Item>
-      {/* <Menu.Item key="4">
+      { <Menu.Item key="4">
         <Linkrt to="/thongtin/0">Xem lịch sử</Linkrt>
-      </Menu.Item> */}
+      </Menu.Item> }
       {users ? (
         phanquyen() ? (
           <Menu.Item key="3">

@@ -42,7 +42,7 @@ export default function Lichsu() {
                                             </tr>
                                             <tr>
                                                 <th>Nơi khởi hành</th>
-                                                <th>Vinh</th>
+                                                <th>Tp.HCM</th>
                                             </tr>
                                         </table>
                                         <table className="nmn">
