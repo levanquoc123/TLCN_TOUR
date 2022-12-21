@@ -226,9 +226,9 @@ function Tour(props) {
       visible: false,
     });
   };
-  const thanhtien = (gia_te, gia_eb) => {
+  const thanhtien = () => {
     var gianguoilon = checkKhuyenmai();
-    return gianguoilon * nguoilon + gia_te * treem + gia_eb * embe;
+    return gianguoilon * nguoilon + gianguoilon * treem * 0.75 + gianguoilon * embe * 0.1;
   };
   const [stylepayment, setstylepayment] = useState(1);
   const callbackfunction = (data) => {
@@ -243,7 +243,7 @@ function Tour(props) {
         return data.id;
       });
       var tourId = id;
-      let tongtien = thanhtien(tour_ngay[0].giatreem, tour_ngay[0].giaembe);
+      let tongtien = thanhtien();
       if (stylepayment === 1) {
         await dispatch(
             addhoadon({
@@ -257,6 +257,7 @@ function Tour(props) {
                     state.date === ""
                         ? formatlaidate(checkngaydi())
                         : state.date,
+                huy:1
             })
         );
         setState({
@@ -274,7 +275,7 @@ function Tour(props) {
               userId,
               nguoilon,
               treem,
-              embe,
+              embe,              
               status: 1,
               ngaydi:
                 state.date === "" ? formatlaidate(checkngaydi()) : state.date,
@@ -479,14 +480,6 @@ function Tour(props) {
                               visible={state.visible3}
                               onVisibleChange={handleVisibleChange}
                             >
-                              <span
-                                className="text-primary"
-                                style={{
-                                  cursor: "pointer",
-                                }}
-                              >
-                                Đổi ngày
-                              </span>
                             </Popover>
                           </td>
                         </tr>
@@ -506,17 +499,16 @@ function Tour(props) {
                             <span>TP.HCM</span>
                           </td>
                         </tr>
-                       <tr>
-                        <td>
-                          Lưu ý
-                          <br/>
-                          <span>Em bé: Dưới 3 tuổi</span>
-                          <br/>
-                          <span>Trẻ em: Từ 3 - 10 tuổi</span>
-                          
-                        </td>
-                       </tr>
+                       <br/>   
                       </table>
+                      <td>
+                        Lưu ý:
+                        <br/>
+                        <span>Em bé: Dưới 3 tuổi. Trẻ em: Từ 3 - 10 tuổi</span>
+                        </td>
+                      <span>Hủy hoặc đổi tour 20 ngày trước ngày đi sẽ hoàn lại 100% giá vé</span>
+                      <br/>
+                      <span>Hủy hoặc đổi tour 5-19 ngày trước ngày đi sẽ hoàn lại 50% giá vé</span>           
                     </div>
                     <Button
                       className="float-right position-absolute btn-dt"
@@ -686,7 +678,7 @@ function Tour(props) {
           <p key={ok.id}>
             Số tiền cần phải trả:{" "}
             <strong className="text-danger">
-              {thanhtien(ok.giatreem, ok.giaembe).toLocaleString()}
+              {thanhtien().toLocaleString()}
             </strong>
           </p>
         ))}

@@ -2,7 +2,6 @@ import { Tabs } from 'antd'
 import React, { useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import Footer from '../footer/Footer'
-//import Duyettour from './duyettour/Duyettour'
 import Lichsu from './lichsu/Lichsu'
 
 export default function Thongtin() {

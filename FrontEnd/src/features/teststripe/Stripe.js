@@ -8,7 +8,7 @@ import Axios from 'axios';
 import { Spin, Tooltip } from 'antd';
 const stripePromise = loadStripe("pk_test_51I0p5CE2oIGbiAkNsd7EJ9VZNaxZXtDMMfkcDD7s5WyP2PXM4hQ6qcSWGwlGtG4DFwWTFTVzr5AAxEaPYiAQBe6Z008USzew3a");
 function Stripe(props) {
-    const [usd, setusd] = useState(23060);
+    const [usd, setusd] = useState(23450);
     const [email, setemail] = useState();
     const thanhtoans = useSelector(state => state.thanhtoans);
     var thanhtoan = [];

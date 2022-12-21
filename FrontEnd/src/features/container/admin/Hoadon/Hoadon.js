@@ -32,14 +32,19 @@ function Hoadon() {
     },
 
     {
-      title: "Action",
-      dataIndex: "action",
+      title: "Thanh toán",
+      dataIndex: "status",
     },
 
     {
-      title: "Tình trạng",
-      dataIndex: "status",
+      title: "Status",
+      dataIndex: "huy"
     },
+
+    {
+      title: "Thời gian cập nhập",
+      dataIndex: "updatedAt"
+    }
   ];
 
   const hoadons = useSelector((state) => state.hoadons.hoadon.data);
@@ -61,7 +66,18 @@ function Hoadon() {
     setTimeout(() => {
         actionResult();
     }, 500);
-}
+  }
+
+  const handleHuy = (e,id)=>{
+    if (e === 1) {
+      dispatch(updatehoadon({ huy: 0, idsua: id }))
+  } else {
+      dispatch(updatehoadon({ huy: 1, idsua: id }))
+  }
+  setTimeout(() => {
+      actionResult();
+  }, 500);
+  }
 
   const hangdleDelete = (e) => {
     dispatch(removehoadon(e));
@@ -70,7 +86,7 @@ function Hoadon() {
     }, 500);
   };
   const tongtien = (nguoilon, treem, embe, gnl, gte, geb) => {
-    return (nguoilon * gnl + treem * gte + embe * geb).toLocaleString();
+    return (nguoilon * gnl + treem * gnl * 0.75 + embe * gnl * 0.5).toLocaleString();
   };
   const title = (nguoilon, treem, embe) => {
     return (
@@ -121,20 +137,11 @@ function Hoadon() {
                   vnđ
                 </span>
               ),
-              status: <div className="action">{ok.status === 1 ? <span onClick={() => { handleStatus(ok.status, ok.id) }}><i className="far fa-thumbs-up text-primary"></i></span> : <span onClick={() => handleStatus(ok.status, ok.id)}><i className="far fa-thumbs-down "></i></span>}</div>,
-              action: (
-                <div className="action">
-                  <Popconfirm
-                    title="Bạn có muốn xoá？"
-                    onConfirm={() => {
-                      hangdleDelete(ok.id);
-                    }}
-                    icon={<QuestionCircleOutlined style={{ color: "red" }} />}
-                  >
-                    <i className="far fa-trash-alt"></i>
-                  </Popconfirm>
-                </div>
-              ),
+              status: <div className="action">{ ok.status === 1 ? <span onClick={() => { handleStatus(ok.status, ok.id) }}><i className="far fa-thumbs-up text-primary"></i></span> : <span onClick={() => handleStatus(ok.status, ok.id)}><i className="far fa-thumbs-down "></i></span>}</div>,
+              huy: (ok.status===0 ? (ok.huy===1? <div className="action"><span onClick={() => { handleHuy(ok.huy, ok.id) }}><i className="text-primary">HỦY TOUR</i></span></div>:<span><i className="text-primary1">TOUR ĐÃ HỦY</i></span>): (ok.huy===1?<div>TOUR CHƯA HỦY</div>:<div>TOUR ĐÃ HỦY</div>)),
+              
+              //<div className="action">{ok.huy === 1 ? <span onClick={() => { handleStatus(ok.huy, ok.id) }}><i className="text-primary">HỦY TOUR</i></span> : <span><i className="text-primary1">TOUR ĐÃ HỦY</i></span>}</div>,
+              updatedAt: <span>{ok.updatedAt}</span>
             }))}
           />
         )}

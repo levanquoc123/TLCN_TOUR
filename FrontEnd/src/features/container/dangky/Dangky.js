@@ -15,6 +15,7 @@ function Dangky(props) {
         return re.test(String(email).toLowerCase());
     }
     const onsubmit = async (e) => {
+        
         e.preventDefault();
         if (!validateEmail(email)) {
             message.warning("Email không đúng định dạng!")
@@ -26,7 +27,7 @@ function Dangky(props) {
                     if (password === repassword) {
                         if (await taikhoanApi.checkEmail(email).then(data => { return data; }) !== null) {
                             message.error("Email đã được sử dụng!");
-                        } else {
+                        } else {                           
                             var UserRoles = [{ roleId: 6 }]
                             taikhoanApi.postuser({ name, status, email, password, UserRoles });
                             history.push('/dangnhap')

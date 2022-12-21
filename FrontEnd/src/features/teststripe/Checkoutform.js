@@ -66,6 +66,7 @@ export default function CheckoutForm(props) {
             nguoilon: hoadon.nguoilon,
             ngaydi: hoadon.ngaydi,
             thanhtien: thanhtien,
+            huy:1
           })
         );
         actionhoadon();

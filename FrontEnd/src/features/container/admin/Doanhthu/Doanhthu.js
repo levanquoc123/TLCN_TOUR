@@ -108,8 +108,8 @@ export default function Doanhthu() {
             [e.target.name]: e.target.value
         })
     }
-    let thunhap = Number((TongThuNhap / usd).toFixed(0));
-    let chiphitong = Number(((TongChiPhi / usd).toFixed(0)))
+    let thunhap = Number((TongThuNhap).toFixed(0));
+    let chiphitong = Number(((TongChiPhi).toFixed(0)))
     const { chitieunam, chitieuthang, chitieungay } = state
     return (
         <div id="doanhthu">
@@ -122,7 +122,7 @@ export default function Doanhthu() {
                         </div>
                     </div>
                     <div className="monney">
-                        <span><strong>$ {TongThuNhap ? thunhap.toLocaleString() : 0}</strong></span><br />
+                        <span><strong> {TongThuNhap ? thunhap.toLocaleString() : 0} VNĐ</strong></span><br />
                         <span>Tổng thu nhập</span>
                     </div>
                 </div>
@@ -134,7 +134,7 @@ export default function Doanhthu() {
                         </div>
                     </div>
                     <div className="monney float-right">
-                        <span><strong>$ {LoiNhuan((TongChiPhi / usd).toFixed(0), (TongThuNhap / usd).toFixed(0))}</strong></span><br />
+                        <span><strong> {LoiNhuan((TongChiPhi).toFixed(0), (TongThuNhap).toFixed(0))} VNĐ</strong></span><br />
                         <span>Lợi nhuận</span>
                     </div>
                 </div>
@@ -145,7 +145,7 @@ export default function Doanhthu() {
                         </div>
                     </div>
                     <div className="monney">
-                        <span><strong>$ {chiphitong.toLocaleString()}</strong></span><br />
+                        <span><strong> {chiphitong.toLocaleString()} VNĐ</strong></span><br />
                         <span>Tổng chi</span>
                     </div>
                 </div>

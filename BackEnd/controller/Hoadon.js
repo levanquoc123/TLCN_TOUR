@@ -48,6 +48,8 @@ exports.findone = (req, res) => {
                 "treem",
                 "embe",
                 "ngaydi",
+                "status",
+                "huy"
             ],
             where: { id: req.params.id },
             include: [{

@@ -2,8 +2,35 @@ var User = require('../models').User;
 var Role = require('../models').Role;
 var UserRole = require('../models').UserRole;
 
+const nodemailer = require('nodemailer')
+var smtpTransport = require("nodemailer-smtp-transport");
+
+// const transporter = nodemailer.createTransport(
+//     smtpTransport({
+//       service: "gmail",
+//       host: "smtp.gmail.com",
+//       secure: false,
+//       auth: {
+//         user: process.env.EMAIL_FROM,
+//         pass: process.env.PASSWORD,
+//       }
+//     })
+//   );
 exports.create = (req, res) => {
     User.create(req.body, { include: [UserRole] }).then(data => {
+        // const emailData = {
+        //     from: process.env.EMAIL_FROM,
+        //     to: req.body.email,
+        //     subject: `Tạo Tài Khoản Mới`,
+        //     html: `
+        //               <h1>Bạn đã tạo tài khoản thành công!!!</h1>
+        //                 <h1>nhấp vào đây để đăng nhập: </h1>
+        //               <p>${process.env.CLIENT_URL}auth//</p>
+        //               <hr />
+                     
+        //           `,
+        //   };
+        // transporter.sendMail(emailData)
         res.json({ data: data })
     }).catch(er => {
         throw er;
